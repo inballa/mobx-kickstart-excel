@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Cell.scss';
-import store, {getCellVal, setSelectedCell} from '../store/store';
+import store, {isSelected, getCellVal, setSelectedCell} from '../store/store';
 import mobxReact from 'mobx-react';
 
 
@@ -11,7 +11,7 @@ const Cell = observer(({rowIndex, cellIndex}) => {
   return (
     <td
       onClick={() => setSelectedCell(rowIndex, cellIndex)}
-      className={s.cell}
+      className={`${s.cell} ${isSelected(rowIndex, cellIndex) ? s.selected : ''}`}
       >{getCellVal(rowIndex, cellIndex)}</td>
   );
 });
