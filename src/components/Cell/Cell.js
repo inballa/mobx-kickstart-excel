@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Cell.scss';
+import store, {getCellVal, setSelectedCell} from '../store/store';
+import mobxReact from 'mobx-react';
 
-function Cell({rowIndex, cellIndex}) {
+
+const {observer} = mobxReact;
+
+const Cell = observer(({rowIndex, cellIndex}) => {
   return (
-      <td className={s.cell}></td>
+    <td
+      onClick={() => setSelectedCell(rowIndex, cellIndex)}
+      className={s.cell}
+      >{getCellVal(rowIndex, cellIndex)}</td>
   );
-}
+});
 
 Cell.propTypes = {
-    rowIndex: PropTypes.number.isRequired,
-    cellIndex: PropTypes.number.isRequired
+  rowIndex: PropTypes.number.isRequired,
+  cellIndex: PropTypes.number.isRequired
 };
 
 export default Cell;
